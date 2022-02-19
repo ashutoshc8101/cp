@@ -1,7 +1,12 @@
 #include <iostream>
 #include <math.h>
+#include <bitset>
 
 using namespace std;
+
+int g (int n) {
+    return n ^ (n >> 1);
+}
 
 int main() {
 
@@ -9,14 +14,13 @@ int main() {
   unsigned int i;
   cin >> n;
 
-  string str = "";
-  char ch = '0';
-
-  for (i = 0; i < n - 1; i++) {
-    str += ch;
+  for (i = 0; i < pow(2, n); i++) {
+    string s = bitset<64> (g(i)).to_string();
+    for (int k = 0 ; k < n; k++) {
+      cout << s[s.length() - k - 1];
+    }
+    cout << endl;
   }
-
-
 
   return 0;
 }
