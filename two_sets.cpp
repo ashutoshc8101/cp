@@ -1,52 +1,45 @@
 #include <iostream>
 #include <vector>
-#include <algorithm>
 
 using namespace std;
 
 int main() {
-  unsigned int n, r_n;
+  unsigned long int n, i;
+  vector<unsigned long int> s1, s2;
   cin >> n;
-  r_n = n;
-  long long sum, rsum;
 
-  rsum = n * (n + 1) / 2;
+  unsigned long long int sum = (n * (n + 1)) / 2;
 
-  if (rsum % 2 != 0) {
+  if (sum % 2 == 1) {
     cout << "NO" << endl;
-  } else {
-    cout << "YES" << endl;
-
-    sum = rsum / 2;
-
-    vector<int> s1;
-
-    while (sum > 0) {
-      if (sum - n >= 0) {
-        sum -= n;
-        s1.push_back(n);
-      }
-      n--;
-    }
-
-    cout << s1.size() << endl;
-
-    for (int i = 0; i < s1.size(); i++) {
-      cout << s1[i] << ' ';
-    }
-    cout << endl;
-
-    n = r_n;
-
-    cout << n - s1.size() << endl;
-
-    for (int i = 1; i < n + 1; i++) {
-      if (find(s1.begin(), s1.end(), i) == s1.end()) {
-        cout << i << ' ';
-      }
-    }
-
+    return 0;
   }
+
+  cout << "YES" << endl;
+
+  unsigned long long int ans = 0;
+
+  for (i = n; i > 0; i--) {
+    if(ans + i <= (sum / 2)) {
+      s1.push_back(i);
+      ans += i;
+    } else {
+      s2.push_back(i);
+    }
+  }
+
+  cout << s1.size() << endl;
+  for (int x = 0; x < s1.size(); x++) {
+    cout << s1[x] << ' ';
+  }
+  cout << endl;
+
+  cout << s2.size() << endl;
+
+  for (int x = 0; x < s2.size(); x++) {
+    cout << s2[x] << ' ';
+  }
+  cout << endl;
 
   return 0;
 }
