@@ -11,7 +11,7 @@ int main() {
   for (i = 0; i < n; i++) {
     cin >> a >> b;
 
-    while ( a > 0 && b > 0 ) {
+    while ((a > 0 && b > 0) && (a != 2 * b || b != 2 * a )) {
       if (a >= b) {
         a -= 2;
         b -= 1;
@@ -21,7 +21,9 @@ int main() {
       }
     }
 
-    if (a == 0 && b == 0) {
+    if (a == 0 || b == 0) {
+      cout << "YES";
+    } else if (a == b * 2 || b == a * 2) {
       cout << "YES";
     } else {
       cout << "NO";
